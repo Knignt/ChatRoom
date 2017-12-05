@@ -35,6 +35,13 @@
             <artifactId>netty-all</artifactId>
             <version>4.0.32.Final</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.springframework/spring-context-support -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context-support</artifactId>
+            <version>4.1.7.RELEASE</version>
+        </dependency>
+
 
         <!-- 配置velocity模板语言 -->
         <dependency>
