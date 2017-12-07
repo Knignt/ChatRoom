@@ -25,7 +25,7 @@
         1.加入对静态资源的处理
         2.欲需使用"/"做整体映射
      -->
-    <mvc:default-servlet-handler/>
+    <mvc:default-servlet-handler />
 
     <!-- 3.配置velocity引擎 -->
     <bean id="velocityConfigurer"
