@@ -49,4 +49,9 @@
     </bean>
     <!-- 4：扫描web相关的bean -->
     <context:component-scan base-package="org.knight.*" />
+
+    <!-- Spring 基于构造函数的依赖注入 -->
+    <bean id="WebSocketChatServer" class="org.knight.websocketchat.WebsocketChatServer">
+        <constructor-arg type="int" value="8080"/>
+    </bean>
 </beans>

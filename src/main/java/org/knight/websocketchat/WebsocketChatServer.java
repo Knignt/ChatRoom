@@ -17,6 +17,11 @@ public class WebsocketChatServer {
 
     public WebsocketChatServer(int port) {
         this.port = port;
+        try {
+            this.run();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void run() throws Exception {

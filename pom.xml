@@ -57,6 +57,6 @@
 
     </dependencies>
     <build>
-        <finalName>hello-web</finalName>
+        <finalName>ChatRoom</finalName>
     </build>
 </project>

@@ -11,7 +11,7 @@
         <init-param>
             <param-name>contextConfigLocation</param-name>
             <param-value>classpath:spring-config-mvc.xml</param-value>
-        </init-param>spring-config-mvc.xml
+        </init-param>
     </servlet>
     <servlet-mapping>
         <servlet-name>dispatcher</servlet-name>
