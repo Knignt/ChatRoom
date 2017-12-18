@@ -17,11 +17,6 @@ public class WebsocketChatServer {
 
     public WebsocketChatServer(int port) {
         this.port = port;
-        try {
-            this.run();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 
     public void run() throws Exception {
@@ -58,7 +53,7 @@ public class WebsocketChatServer {
         if (args.length > 0) {
             port = Integer.parseInt(args[0]);
         } else {
-            port = 8080;
+            port = 80;
         }
         new WebsocketChatServer(port).run();
 
