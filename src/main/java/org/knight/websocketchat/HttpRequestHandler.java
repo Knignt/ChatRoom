@@ -20,10 +20,12 @@ public class HttpRequestHandler extends SimpleChannelInboundHandler<FullHttpRequ
     static {
         URL location = HttpRequestHandler.class.getProtectionDomain().getCodeSource().getLocation();
         try {
+            File file = new Resource().getFile();
             String path = location.toURI() + "index.html";
-//            String path = location.toURI() + "org/knight/websocketchat/index.html";
-            path = !path.contains("file:") ? path : path.substring(5);
-            INDEX = new File(path);
+////            String path = location.toURI() + "org/knight/websocketchat/index.html";
+//            path = !path.contains("file:") ? path : path.substring(5);
+////            INDEX = new File(path);
+            INDEX = file;
         } catch (URISyntaxException e) {
             throw new IllegalStateException("Unable to locate ChatRoom.html", e);
         }
