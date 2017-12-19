@@ -9,7 +9,7 @@ public class Resource {
 
     public File getFile(){
         InputStream inputStream = this.getClass().getResourceAsStream("/index.html");
-        File file = new File("");
+        File file = new File("txt");
 
         inputstreamtofile(inputStream, file);
         return file;
