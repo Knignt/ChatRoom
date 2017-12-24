@@ -15,12 +15,15 @@
         if (window.WebSocket) {
             socket = new WebSocket("ws:localhost:80/ws");
             socket.onmessage = function(event) {
+                debugger;
                 var ta = document.getElementById('responseText');
-                ta.value = ta.value + '\n' + event.data
+                ta.value = ta.value + '\n' + event.data;
+                var scrollTop = $("#responseText")[0].scrollHeight;
+                $("#responseText").scrollTop(scrollTop);
             };
             socket.onopen = function(event) {
                 var ta = document.getElementById('responseText');
-                ta.value = "连接开启!";
+                ta.value = "连接开启!\n如有任何改进意见请提Issue到https://github.com/Knignt/ChatRoom";
             };
             socket.onclose = function(event) {
                 var ta = document.getElementById('responseText');
@@ -31,15 +34,17 @@
         }
 
         function send(message) {
-            if (!window.WebSocket) {
-                return;
+            if(message){
+                if (!window.WebSocket) {
+                    return;
+                }
+                if (socket.readyState == WebSocket.OPEN) {
+                    socket.send(message);
+                } else {
+                    alert("连接没有开启.");
+                }
+                clearBox();
             }
-            if (socket.readyState == WebSocket.OPEN) {
-                socket.send(message);
-            } else {
-                alert("连接没有开启.");
-            }
-            clearBox();
         }
         
         function clearBox(){
