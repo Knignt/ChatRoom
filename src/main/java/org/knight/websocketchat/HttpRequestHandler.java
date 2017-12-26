@@ -18,20 +18,20 @@ public class HttpRequestHandler extends SimpleChannelInboundHandler<FullHttpRequ
     private static final File INDEX;
 
     static {
-        URL location = HttpRequestHandler.class.getProtectionDomain().getCodeSource().getLocation();
-        try {
-            File file = new Resource().getFile();
-            String path = location.toURI() + "index.html";
-            INDEX = file;
-        } catch (URISyntaxException e) {
-            throw new IllegalStateException("Unable to locate ChatRoom.html", e);
-        }
+        File file = new Resource().getIndexFile();
+        INDEX = file;
     }
 
     public HttpRequestHandler(String wsUri) {
         this.wsUri = wsUri;
     }
 
+    /**
+     * 覆盖了 channelRead0() 事件处理方法。
+     * 每当从服务端读到客户端写入信息时，
+     * 其中如果你使用的是 Netty 5.x 版本时，
+     * 需要把 channelRead0() 重命名为messageReceived()
+     */
     @Override
     public void channelRead0(ChannelHandlerContext ctx, FullHttpRequest request) throws Exception {
         if (wsUri.equalsIgnoreCase(request.getUri())) {
@@ -70,9 +70,17 @@ public class HttpRequestHandler extends SimpleChannelInboundHandler<FullHttpRequ
 
     private static void send100Continue(ChannelHandlerContext ctx) {
         FullHttpResponse response = new DefaultFullHttpResponse(HttpVersion.HTTP_1_1, HttpResponseStatus.CONTINUE);
+        System.out.println("send100Continue--->" + response.toString());
         ctx.writeAndFlush(response);
     }
 
+    /**
+    * exceptionCaught() 事件处理方法是当出现 Throwable 对象才会被调用，
+    * 即当 Netty 由于 IO 错误或者处理器在处理事件时抛出的异常时。
+    * 在大部分情况下，捕获的异常应该被记录下来并且把关联的 channel 给关闭掉。
+    * 然而这个方法的处理方式会在遇到不同异常的情况下有不同的实现，
+    * 比如你可能想在关闭连接之前发送一个错误码的响应消息。
+    */
 	@Override
 	public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause)
 			throws Exception {
