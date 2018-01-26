@@ -29,8 +29,7 @@ public class HttpRequestHandler extends SimpleChannelInboundHandler<FullHttpRequ
     /**
      * 覆盖了 channelRead0() 事件处理方法。
      * 每当从服务端读到客户端写入信息时，
-     * 其中如果你使用的是 Netty 5.x 版本时，
-     * 需要把 channelRead0() 重命名为messageReceived()
+     * 其中如果你使用的是 Netty 5.x 版本时，需要把 channelRead0() 重命名为messageReceived()
      */
     @Override
     public void channelRead0(ChannelHandlerContext ctx, FullHttpRequest request) throws Exception {
